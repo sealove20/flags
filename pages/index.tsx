@@ -1,7 +1,9 @@
 const Home: React.FunctionComponent = () => {
   return (
-    <div>
-      <p>Retorno</p>
+    <div className="">
+      <div className="">
+        Tão simples quanto isso.
+      </div>
     </div>
   )
 }

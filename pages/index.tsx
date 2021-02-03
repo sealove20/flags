@@ -1,10 +1,14 @@
+import Header from '../src/components/Header'
+import Layout from '../src/components/Layout'
+
 const Home: React.FunctionComponent = () => {
   return (
-    <div className="">
-      <div className="">
-        Tão simples quanto isso.
-      </div>
-    </div>
+    <>
+      <Header />
+      <Layout>
+        <p>abc</p>
+      </Layout>
+    </>
   )
 }
 

@@ -15,7 +15,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "isolatedModules": true
   },
   "include": [
@@ -24,4 +24,7 @@
     "**/*.tsx",
     "./jest-setup.ts"
   ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -3,7 +3,7 @@ import Header from '@/components/Header'
 import Layout from '@/components/Layout'
 import axios from 'axios'
 
-type Country = {
+interface Country {
   name: string
   flag: string
   population: number

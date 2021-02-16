@@ -1,6 +1,6 @@
 import * as React from 'react'
-import Header from '../src/components/Header'
-import Layout from '../src/components/Layout'
+import Header from '@/components/Header'
+import Layout from '@/components/Layout'
 import axios from 'axios'
 
 type Country = {

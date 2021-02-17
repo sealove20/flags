@@ -1,13 +1,16 @@
 import * as React from 'react'
 import { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
+import Layout from '@/components/Layout'
 
 import '../styles/globals.css'
 
 const MyApp: React.FunctionComponent<AppProps> = ({ Component, pageProps }) => {
   return (
     <ThemeProvider attribute="class">
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </ThemeProvider>
   )
 }

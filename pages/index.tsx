@@ -1,5 +1,4 @@
 import * as React from 'react'
-import Layout from '@/components/Layout'
 import axios from 'axios'
 
 interface Country {
@@ -34,13 +33,11 @@ const Home: React.FunctionComponent = () => {
   }
   return (
     <>
-      <Layout>
-        <div>
-          {countries.map(country => (
-            <img key={country.name} src={country.flag} alt="country flag" className="h-3/6 w-3/6" />
-          ))}
-        </div>
-      </Layout>
+      <div>
+        {countries.map(country => (
+          <img key={country.name} src={country.flag} alt="country flag" className="h-3/6 w-3/6" />
+        ))}
+      </div>
     </>
   )
 }

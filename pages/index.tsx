@@ -1,5 +1,4 @@
 import * as React from 'react'
-import Header from '@/components/Header'
 import Layout from '@/components/Layout'
 import axios from 'axios'
 
@@ -18,7 +17,7 @@ const Home: React.FunctionComponent = () => {
   const fetchCountries = async (): Promise<void> => {
     try {
       setLoading(true)
-      const response = await axios.get<Country[]>('https://restcountries.eu/rest/v2/all')
+      const response = await axios.get('https://restcountries.eu/rest/v2/all')
       setCountries(response.data)
       setLoading(false)
     } catch (error) {
@@ -35,7 +34,6 @@ const Home: React.FunctionComponent = () => {
   }
   return (
     <>
-      <Header />
       <Layout>
         <div>
           {countries.map(country => (

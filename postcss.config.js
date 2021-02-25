@@ -1,19 +1,9 @@
+
+// If you want to use other PostCSS plugins, see the following:
+// https://tailwindcss.com/docs/using-with-preprocessors
 module.exports = {
-  plugins: [
-    'tailwindcss',
-    'autoprefixer',
-    'postcss-preset-env',
-    process.env.NODE_ENV === 'production'
-      ? [
-          '@fullhuman/postcss-purgecss',
-          {
-            content: [
-              './pages/**/*.{js,jsx,ts,tsx}',
-              './src/**/*.{js,jsx,ts,tsx}'
-            ],
-            defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
-          }
-        ]
-      : undefined
-  ]
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {}
+  }
 }

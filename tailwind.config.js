@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'dark-background': 'hsl(209, 23%, 22%)',
-        'dark-element': 'hsl(207, 26%, 17%)',
+        'dark-background': '#202D36',
+        'dark-element': '#2B3743',
         'light-input': 'hsl(0, 0%, 52%)',
         'light-background': 'hsl(0, 0%, 98%)'
       },
@@ -15,7 +15,9 @@ module.exports = {
     }
   },
   variants: {
-    extend: {}
+    extend: {
+      padding: ['first']
+    }
   },
   plugins: []
 }

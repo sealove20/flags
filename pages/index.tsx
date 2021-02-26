@@ -1,5 +1,6 @@
 import * as React from 'react'
 import axios from 'axios'
+import Card from '@/components/Card'
 
 interface Country {
   name: string
@@ -33,11 +34,18 @@ const Home: React.FunctionComponent = () => {
   }
   return (
     <>
-      <div>
+      <section>
         {countries.map(country => (
-          <img key={country.name} src={country.flag} alt="country flag" className="h-3/6 w-3/6" />
+        <Card
+          key={country.name}
+          name={country.name}
+          flag={country.flag}
+          population={country.population}
+          region={country.region}
+          capital={country.capital}
+        />
         ))}
-      </div>
+      </section>
     </>
   )
 }

@@ -10,7 +10,14 @@ module.exports = {
         'light-background': 'hsl(0, 0%, 98%)'
       },
       textColor: {
-        'light-text': 'hsl(200, 15%, 8%)'
+        'light-text': 'hsl(200, 15%, 8%)',
+        'dark-text': 'hsl(0, 0%, 100%)',
+        'dark-element': '#2B3743'
+      },
+      placeholderColor: {
+        'light-text': 'hsl(200, 15%, 8%)',
+        'dark-text': 'hsl(0, 0%, 100%)',
+        'dark-element': '#2B3743'
       }
     }
   },

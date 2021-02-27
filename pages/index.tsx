@@ -1,7 +1,7 @@
 import * as React from 'react'
 import axios from 'axios'
 import Card from '@/components/Card'
-
+import Search from '@/components/Search'
 interface Country {
   name: string
   flag: string
@@ -13,6 +13,7 @@ interface Country {
 const Home: React.FunctionComponent = () => {
   const [countries, setCountries] = React.useState<Country[]>([])
   const [loading, setLoading] = React.useState(false)
+  const [search, setSearch] = React.useState('')
 
   const fetchCountries = async (): Promise<void> => {
     try {
@@ -25,17 +26,28 @@ const Home: React.FunctionComponent = () => {
     }
   }
 
+  const handleSearchChange = (event: React.FormEvent<HTMLInputElement>): void => {
+    const value = event.currentTarget.value
+
+    setSearch(value)
+  }
+
+  const getFilteredCountries = (): Country[] => {
+    return countries.filter(country => country.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
+  }
+
   React.useEffect(() => {
     fetchCountries()
   }, [])
 
   if (loading) {
-    return <div className="flex justify-center items-center h-screen">LOADING</div>
+    return <div className="flex justify-center items-center h-screen text-black dark:text-white">LOADING</div>
   }
   return (
     <>
       <section>
-        {countries.map(country => (
+        <Search search={search} handleSearchChange={handleSearchChange} />
+        {getFilteredCountries().map(country => (
         <Card
           key={country.name}
           name={country.name}

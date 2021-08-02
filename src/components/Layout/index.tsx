@@ -1,3 +1,4 @@
+import * as React from 'react'
 import Header from '@/components/Header'
 
 const Layout: React.FunctionComponent = ({ children }) => {

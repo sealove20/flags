@@ -2,6 +2,7 @@ import * as React from 'react'
 import axios from 'axios'
 import Card from '@/components/Card'
 import Search from '@/components/Search'
+import Select from 'react-select'
 interface Country {
   name: string
   flag: string
@@ -14,6 +15,13 @@ const Home: React.FunctionComponent = () => {
   const [countries, setCountries] = React.useState<Country[]>([])
   const [loading, setLoading] = React.useState(false)
   const [search, setSearch] = React.useState('')
+
+  const options = [
+    { value: 'americas', label: 'Americas' },
+    { value: 'asia', label: 'Asia' },
+    { value: 'europe', label: 'Europe' },
+    { value: 'oceania', label: 'Oceania' }
+  ]
 
   const fetchCountries = async (): Promise<void> => {
     try {
@@ -47,6 +55,8 @@ const Home: React.FunctionComponent = () => {
     <>
       <section>
         <Search search={search} handleSearchChange={handleSearchChange} />
+        <Select options={options} clearIndicator className="mb-5" />
+
         {getFilteredCountries().map(country => (
         <Card
           key={country.name}

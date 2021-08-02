@@ -9,7 +9,7 @@ const ThemeSpy: React.FunctionComponent = () => {
   return <span data-testid="theme-spy">{theme}</span>
 }
 
-test('Should render ThemeToggle component', () => {
+it('Should check light theme', () => {
   const { getByTestId, getByRole } = render(
     <>
       <ThemeToggle />

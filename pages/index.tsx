@@ -3,6 +3,8 @@ import axios from 'axios'
 import Card from '@/components/Card'
 import Search from '@/components/Search'
 import Select from 'react-select'
+
+const { useState } = React
 interface Country {
   name: string
   flag: string
@@ -11,10 +13,16 @@ interface Country {
   capital: string
 }
 
+type SelectSchema = {
+  value: string
+  label: string
+}
+
 const Home: React.FunctionComponent = () => {
-  const [countries, setCountries] = React.useState<Country[]>([])
-  const [loading, setLoading] = React.useState(false)
-  const [search, setSearch] = React.useState('')
+  const [countries, setCountries] = useState<Country[]>([])
+  const [loading, setLoading] = useState(false)
+  const [search, setSearch] = useState('')
+  const [selectedOption, setSelectedOption] = useState(null)
 
   const options = [
     { value: 'americas', label: 'Americas' },
@@ -34,10 +42,26 @@ const Home: React.FunctionComponent = () => {
     }
   }
 
+  const fetchCountriesByRegion = async (regionName: string): Promise<void> => {
+    try {
+      const response = await axios.get(`https://restcountries.eu/rest/v2/region/${regionName}`)
+      setCountries(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const handleSearchChange = (event: React.FormEvent<HTMLInputElement>): void => {
     const value = event.currentTarget.value
 
     setSearch(value)
+  }
+
+  const handleSelectChange = ({ value, label }: SelectSchema): void => {
+    const regionName = value
+    setSelectedOption({ value, label })
+
+    fetchCountriesByRegion(regionName)
   }
 
   const getFilteredCountries = (): Country[] => {
@@ -55,7 +79,13 @@ const Home: React.FunctionComponent = () => {
     <>
       <section>
         <Search search={search} handleSearchChange={handleSearchChange} />
-        <Select options={options} clearIndicator className="mb-5" />
+        <Select
+          options={options}
+          onChange={handleSelectChange}
+          value={selectedOption}
+          className="mb-5"
+          instanceId="flags-select"
+        />
 
         {getFilteredCountries().map(country => (
         <Card

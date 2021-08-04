@@ -2,7 +2,7 @@ import * as React from 'react'
 import axios from 'axios'
 import Card from '@/components/Card'
 import Search from '@/components/Search'
-import Select from 'react-select'
+import { SelectComponent, selectOption } from '@/components/Select'
 
 const { useState } = React
 interface Country {
@@ -13,23 +13,11 @@ interface Country {
   capital: string
 }
 
-type SelectSchema = {
-  value: string
-  label: string
-}
-
 const Home: React.FunctionComponent = () => {
   const [countries, setCountries] = useState<Country[]>([])
   const [loading, setLoading] = useState(false)
   const [search, setSearch] = useState('')
   const [selectedOption, setSelectedOption] = useState(null)
-
-  const options = [
-    { value: 'americas', label: 'Americas' },
-    { value: 'asia', label: 'Asia' },
-    { value: 'europe', label: 'Europe' },
-    { value: 'oceania', label: 'Oceania' }
-  ]
 
   const fetchCountries = async (): Promise<void> => {
     try {
@@ -57,7 +45,7 @@ const Home: React.FunctionComponent = () => {
     setSearch(value)
   }
 
-  const handleSelectChange = ({ value, label }: SelectSchema): void => {
+  const handleSelectChange = ({ value, label }: selectOption): void => {
     const regionName = value
     setSelectedOption({ value, label })
 
@@ -79,23 +67,19 @@ const Home: React.FunctionComponent = () => {
     <>
       <section>
         <Search search={search} handleSearchChange={handleSearchChange} />
-        <Select
-          options={options}
+        <SelectComponent
+          selectedOption={selectedOption}
           onChange={handleSelectChange}
-          value={selectedOption}
-          className="mb-5"
-          instanceId="flags-select"
         />
-
         {getFilteredCountries().map(country => (
-        <Card
-          key={country.name}
-          name={country.name}
-          flag={country.flag}
-          population={country.population}
-          region={country.region}
-          capital={country.capital}
-        />
+          <Card
+            key={country.name}
+            name={country.name}
+            flag={country.flag}
+            population={country.population}
+            region={country.region}
+            capital={country.capital}
+          />
         ))}
       </section>
     </>

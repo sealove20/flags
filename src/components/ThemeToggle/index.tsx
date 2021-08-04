@@ -1,11 +1,10 @@
 import * as React from 'react'
 import { useTheme } from 'next-themes'
+import { useIsMounted } from 'hooks/useIsMounted'
 
 const ThemeToggle: React.FunctionComponent = () => {
   const { theme, setTheme } = useTheme()
-  const [isMounted, setMounted] = React.useState(false)
-
-  React.useEffect(() => setMounted(true), [])
+  const isMounted = useIsMounted()
 
   const handleClick = (event: React.MouseEvent): void => {
     event.preventDefault()

@@ -5,7 +5,7 @@ import Search from '@/components/Search'
 import { SelectComponent, selectOption } from '@/components/Select'
 
 const { useState } = React
-interface Country {
+export interface Country {
   name: string
   flag: string
   population: number

@@ -1,5 +1,4 @@
 import '../matchMedia.mock' // Must be imported before the tested file
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import * as React from 'react'
 import { render, RenderOptions, RenderResult } from '@testing-library/react'
 import { ThemeProvider } from 'next-themes'
